@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const uri = "mongodb+srv://bk:-$@cluster0.iofkxrr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 const booksRoutes = require('./routes/books')
+const userRoutes = require('./routes/user')
 
 mongoose.connect(uri,{ useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/books', booksRoutes)
+app.use('/api/auth', userRoutes)
 
 module.exports = app
 
