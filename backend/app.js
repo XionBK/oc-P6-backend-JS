@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const uri = "mongodb+srv://bk:-$@cluster0.iofkxrr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const path = require('path');
 
 const booksRoutes = require('./routes/books')
 const userRoutes = require('./routes/user')
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/books', booksRoutes)
 app.use('/api/auth', userRoutes)
 
