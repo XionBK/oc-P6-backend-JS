@@ -36,6 +36,14 @@ exports.getAllBooks = (req, res, next) => {
     .catch(error => res.status(400).json({ error }));
 }
 
+exports.getBestRating = (req, res, next) => {
+  Book.find()
+    .sort({ averageRating: -1 })
+    .limit(3)
+    .then(books => res.status(200).json(books))
+    .catch(error => res.status(400).json({ error }));
+}
+
 exports.updateBook = (req, res, next) => {
   const bookObject = req.file ? {
     ...JSON.parse(req.body.book),
@@ -89,7 +97,7 @@ exports.deleteBook = (req, res, next) => {
 }
 
 exports.addRating = (req, res, next) => {
-  
+
   const { userId, rating } = req.body;
 
   //recherche du livre
