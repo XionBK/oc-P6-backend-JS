@@ -1,6 +1,7 @@
+require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://bk:-$@cluster0.iofkxrr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = process.env.MONGODB_URI;
 const path = require('path');
 
 const booksRoutes = require('./routes/books')
